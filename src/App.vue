@@ -180,8 +180,7 @@ export default {
       }
       }
       this.openCell.add(index);
-        // console.log(this.openCell,Math.trunc((this.cols * this.rows)-(this.getLevelNum() * 0.15 * (this.cols * this.rows))));
-        if(this.openCell.size == Math.trunc((this.cols * this.rows)-(this.getLevelNum() * 0.15 * (this.cols * this.rows)))) {
+        if(this.openCell.size == Math.ceil((this.cols * this.rows)-Math.ceil(this.getLevelNum() * 0.15 * (this.cols * this.rows)))) {
           this.title = "恭喜你完成游戏！";
           this.dialogVisible = true;
         }
@@ -195,8 +194,8 @@ export default {
     let sum = this.cols * this.rows;
     let randomBoom = this.getLevelNum() * 0.15 * sum;
     let randomIndexSet = new Set();
-    while(randomIndexSet.size <= Math.trunc(randomBoom)) {
-      randomIndexSet.add(Math.trunc(Math.random() * sum));
+    while(randomIndexSet.size < Math.ceil(randomBoom)) {
+      randomIndexSet.add(Math.ceil(Math.random() * sum));
     }
     for (let i = 0;i<sum;i++) {
       let isBoom = randomIndexSet.has(i);
